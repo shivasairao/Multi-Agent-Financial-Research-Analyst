@@ -801,10 +801,26 @@ def main(argv: list[str] | None = None) -> int:
     if not tickers:
         print("No valid tickers given.", file=sys.stderr)
         return 2
+
     load_dotenv()  # reads GEMINI_API_KEY from a local .env file if present
-    api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
+
+    # Check Streamlit runtime secrets first, then fallback to environment variables
+    api_key = None
+    try:
+        import streamlit as st
+
+        if "GEMINI_API_KEY" in st.secrets:
+            api_key = st.secrets["GEMINI_API_KEY"]
+        elif "GOOGLE_API_KEY" in st.secrets:
+            api_key = st.secrets["GOOGLE_API_KEY"]
+    except Exception:
+        pass
+
     if not api_key:
-        print("Set GEMINI_API_KEY first (free key: https://aistudio.google.com/apikey).", file=sys.stderr)
+        api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
+
+    if not api_key:
+        print("Set GEMINI_API_KEY first (free key: [https://aistudio.google.com/apikey](https://aistudio.google.com/apikey)).", file=sys.stderr)
         return 2
 
     client = genai.Client(api_key=api_key, http_options=types.HttpOptions(timeout=120_000))
