@@ -9,8 +9,6 @@ Built on the Google Gemini API **free tier**, with market data from Yahoo Financ
 <!-- Add a screenshot or GIF of the Streamlit app here -->
 <!-- ![demo](docs/demo.png) -->
 
-**Live demo:** _add your Streamlit Community Cloud link here_
-
 ---
 
 ## How it works
