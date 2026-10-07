@@ -1,0 +1,20 @@
+# secrets
+.env
+.env.*
+
+# environments
+venv/
+myenv/
+.venv/
+
+# python
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# stray pip output files (e.g. a file named "1.0.0")
+1.0.0
+
+# generated reports: remove this line if you want to commit a sample report for the live demo
+# reports/*.pkl

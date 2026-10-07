@@ -1,0 +1,4 @@
+# Offline agent pipeline (agentic_ai.py)
+-r requirements.txt
+google-genai>=2.28.0
+yfinance>=0.2.50
